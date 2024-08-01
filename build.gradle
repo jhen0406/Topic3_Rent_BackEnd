@@ -1,0 +1,54 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.18'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '11'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	
+	//因為圖片而加入以下兩行
+	implementation 'commons-fileupload:commons-fileupload:1.4' // 請根據項目需要調整版本號
+	implementation 'commons-io:commons-io:2.11.0' // 請根據項目需要調整版本號
+	
+	//信箱 javaMail
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
+	implementation 'javax.mail:javax.mail-api:1.6.2'
+ 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	
+	
+	//mysql connector
+	implementation 'mysql:mysql-connector-java:8.0.31'
+	//Hot Deployment :專案啟動中，若有修改資訊，它會自動幫我們重新啟動更新
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    //springfox starter maven(swagger API)
+    //implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    //springdoc openapi maven(open API)與上面那一個擇一使用，不然會有衝突
+//暫時註解,這是API
+//    implementation 'org.springdoc:springdoc-openapi-ui:1.8.0'
+    //validation資料驗證
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    
+    //testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
+	
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
